@@ -1,0 +1,18 @@
+{% extends 'noticias/base.html' %}
+
+{% block contenido %}
+<h1 class="mb-4">Últimas Noticias</h1>
+
+{% for noticia in noticias %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ noticia.titulo }}</h5>
+            <p class="card-text">{{ noticia.contenido }}</p>
+            <p class="text-muted"><small>✍️ {{ noticia.autor }} | 🏷️ {{ noticia.categoria }}</small></p>
+        </div>
+    </div>
+{% empty %}
+    <div class="alert alert-info">No hay noticias cargadas todavía.</div>
+{% endfor %}
+
+{% endblock %}

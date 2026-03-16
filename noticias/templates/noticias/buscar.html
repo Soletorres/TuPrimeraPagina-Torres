@@ -1,0 +1,25 @@
+{% extends 'noticias/base.html' %}
+
+{% block contenido %}
+<h2 class="mb-4">Buscar Noticias</h2>
+
+<form method="GET" class="d-flex mb-4">
+    <input type="text" name="q" placeholder="Buscá una noticia..." class="form-control me-2">
+    <button type="submit" class="btn btn-dark">Buscar</button>
+</form>
+
+{% if resultados %}
+    {% for noticia in resultados %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ noticia.titulo }}</h5>
+                <p class="card-text">{{ noticia.contenido }}</p>
+                <p class="text-muted"><small>✍️ {{ noticia.autor }} | 🏷️ {{ noticia.categoria }}</small></p>
+            </div>
+        </div>
+    {% endfor %}
+{% elif request.GET.q %}
+    <div class="alert alert-warning">No se encontraron noticias con ese término.</div>
+{% endif %}
+
+{% endblock %}
