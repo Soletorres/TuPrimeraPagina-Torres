@@ -1,18 +1,22 @@
 {% extends 'noticias/base.html' %}
 
 {% block contenido %}
-<h1 class="mb-4">Últimas Noticias</h1>
+<h1 class="mb-4">Ultimas Noticias</h1>
 
 {% for noticia in noticias %}
     <div class="card mb-3">
         <div class="card-body">
             <h5 class="card-title">{{ noticia.titulo }}</h5>
-            <p class="card-text">{{ noticia.contenido }}</p>
-            <p class="text-muted"><small>✍️ {{ noticia.autor }} | 🏷️ {{ noticia.categoria }}</small></p>
+            <h6 class="card-subtitle mb-2 text-muted">{{ noticia.subtitulo }}</h6>
+            {% if noticia.imagen %}
+                <img src="{{ noticia.imagen.url }}" class="img-fluid mb-2" style="max-height: 200px;" alt="{{ noticia.titulo }}">
+            {% endif %}
+            <p class="text-muted"><small>{{ noticia.autor }} | {{ noticia.categoria }} | {{ noticia.fecha|date:"d/m/Y" }}</small></p>
+            <a href="{% url 'detalle_noticia' noticia.pk %}" class="btn btn-dark btn-sm">Leer mas</a>
         </div>
     </div>
 {% empty %}
-    <div class="alert alert-info">No hay noticias cargadas todavía.</div>
+    <div class="alert alert-info">No hay noticias cargadas todavia.</div>
 {% endfor %}
 
 {% endblock %}

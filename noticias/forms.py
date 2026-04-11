@@ -9,7 +9,7 @@ class CategoriaForm(forms.ModelForm):
 class AutorForm(forms.ModelForm):
     class Meta:
         model = Autor
-        fields = ['nombre', 'email', 'bio']
+        fields = ['nombre', 'email']
 
 class NoticiaForm(forms.ModelForm):
     class Meta:
